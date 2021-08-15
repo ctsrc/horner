@@ -9,7 +9,7 @@ pub enum PolynomialEvalError {
 
 /// Evaluate a polynomial using Horner's method.
 ///
-/// Horner's method goes like this: to find 𝑎𝑥³+𝑏𝑥²+𝑐𝑥+𝑑, you evaluate 𝑥(𝑥(𝑎+𝑏)+𝑐)+𝑑.
+/// Horner's method goes like this: to find 𝑎𝑥³+𝑏𝑥²+𝑐𝑥+𝑑, you evaluate 𝑥(𝑥(𝑎𝑥+𝑏)+𝑐)+𝑑.
 ///
 /// That's what this function does too.
 ///
