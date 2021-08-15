@@ -1,7 +1,14 @@
 [package]
 name = "horner"
+description = "Evaluate polynomials using Horner's method."
+license = "ISC"
+readme = "README.md"
+repository = "https://github.com/ctsrc/horner"
 version = "0.1.0"
+authors = ["Erik Nordstrøm <erik@nordstroem.no>"]
 edition = "2018"
+keywords = ["math", "polynomial", "algebra", "polynomials"]
+categories = ["mathematics", "science"]
 
 [dependencies]
 num-traits = "0.2.14"
