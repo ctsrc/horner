@@ -24,10 +24,10 @@ pub enum PolynomialEvalError {
 /// // Evaluating the polynomial 72𝑥²+81𝑥+99 with 𝑥 = 5
 /// let val = eval_polynomial(5, &[72, 81, 99]).unwrap();
 ///
-/// // Equivalent calculation "by hand", so to speak.
-/// let equiv = 72 * 5_i32.pow(2) + 81 * 5 + 99;
+/// // Traditional calculation.
+/// let trad = 72 * 5_i32.pow(2) + 81 * 5 + 99;
 ///
-/// assert_eq!(val, equiv);
+/// assert_eq!(val, trad);
 /// ```
 ///
 /// ```
@@ -43,9 +43,9 @@ pub enum PolynomialEvalError {
 /// // Evaluated with 𝑥 = 99
 ///
 /// let val = eval_polynomial(99_i128, &[23, 0, 27, 0, -5, 0, 0, 0, 0, 0]).unwrap();
-/// let equiv = 23 * 99_i128.pow(9) + 27 * 99_i128.pow(7) - 5 * 99_i128.pow(5);
+/// let trad = 23 * 99_i128.pow(9) + 27 * 99_i128.pow(7) - 5 * 99_i128.pow(5);
 ///
-/// assert_eq!(val, equiv);
+/// assert_eq!(val, trad);
 /// ```
 pub fn eval_polynomial<T: MulAddAssign + Copy> (x: T, constants: &[T]) -> Result<T, PolynomialEvalError>
 {
