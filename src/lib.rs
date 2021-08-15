@@ -13,7 +13,7 @@ pub enum PolynomialEvalError {
 ///
 /// That's what this function does too.
 ///
-/// You provide a value for `𝑥` and a slice of values for the constants `&[𝑎, 𝑏, 𝑐, 𝑑, ]`.
+/// You provide a value for `𝑥` and a slice of values for the constants `&[𝑎, 𝑏, 𝑐, 𝑑, …]`.
 /// The cardinality of the slice of constants must equal the degree of the polynomial plus one.
 ///
 /// Here are some examples demonstrating use of eval_polynomial:
