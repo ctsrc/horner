@@ -1,7 +1,7 @@
 use num_traits::ops::mul_add::MulAddAssign;
 use thiserror::Error;
 
-#[derive(Error, Debug)]
+#[derive(Error, Debug, PartialEq)]
 pub enum PolynomialEvalError {
   #[error("Cardinality of constants slice is too low.")]
   CardinalityTooLow,
@@ -14,7 +14,7 @@ pub enum PolynomialEvalError {
 /// That's what this function does too.
 ///
 /// You provide a value for `𝑥` and a slice of values for the constants `&[𝑎, 𝑏, 𝑐, 𝑑, ]`.
-/// The cardinality of the slice of constants must equal the degree of the polynomial.
+/// The cardinality of the slice of constants must equal the degree of the polynomial plus one.
 ///
 /// Here are some examples demonstrating use of eval_polynomial:
 ///
@@ -28,6 +28,12 @@ pub enum PolynomialEvalError {
 /// let equiv = 72 * 5_i32.pow(2) + 81 * 5 + 99;
 ///
 /// assert_eq!(val, equiv);
+/// ```
+///
+/// ```
+/// # use horner::eval_polynomial;
+/// // Here we have the "polynomial" 42, which is to say, 42𝑥⁰ if you will.
+/// assert_eq!(Ok(42), eval_polynomial(9000, &[42]));
 /// ```
 pub fn eval_polynomial<T: MulAddAssign + Copy> (x: T, constants: &[T]) -> Result<T, PolynomialEvalError>
 {
