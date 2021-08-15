@@ -32,8 +32,20 @@ pub enum PolynomialEvalError {
 ///
 /// ```
 /// # use horner::eval_polynomial;
-/// // Here we have the "polynomial" 42, which is to say, 42𝑥⁰ if you will.
+/// // Here we have the "polynomial" 42, which is to say, 42𝑥⁰. Evaluated with 𝑥 = 9000
 /// assert_eq!(Ok(42), eval_polynomial(9000, &[42]));
+/// ```
+///
+/// ```
+/// # use horner::eval_polynomial;
+/// // 23𝑥⁹+0𝑥⁸+27𝑥⁷+0𝑥⁶-5𝑥⁵+0𝑥⁴+0𝑥³+0𝑥²+0𝑥ⁱ+0𝑥⁰
+/// // Written simply: 23𝑥⁹+27𝑥⁷-5𝑥⁵
+/// // Evaluated with 𝑥 = 99
+///
+/// let val = eval_polynomial(99_i128, &[23, 0, 27, 0, -5, 0, 0, 0, 0, 0]).unwrap();
+/// let equiv = 23 * 99_i128.pow(9) + 27 * 99_i128.pow(7) - 5 * 99_i128.pow(5);
+///
+/// assert_eq!(val, equiv);
 /// ```
 pub fn eval_polynomial<T: MulAddAssign + Copy> (x: T, constants: &[T]) -> Result<T, PolynomialEvalError>
 {
