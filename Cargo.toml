@@ -4,5 +4,5 @@ version = "0.1.0"
 edition = "2018"
 
 [dependencies]
-num = "0.4.0"
+num-traits = "0.2.14"
 thiserror = "1.0.26"

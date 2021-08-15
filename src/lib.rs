@@ -1,4 +1,4 @@
-use num::Num;
+use num_traits::ops::mul_add::MulAddAssign;
 use thiserror::Error;
 
 #[derive(Error, Debug)]
@@ -29,12 +29,18 @@ pub enum PolynomialEvalError {
 ///
 /// assert_eq!(val, equiv);
 /// ```
-pub fn eval_polynomial<T: Num + Copy> (x: T, constants: &[T]) -> Result<T, PolynomialEvalError>
+pub fn eval_polynomial<T: MulAddAssign + Copy> (x: T, constants: &[T]) -> Result<T, PolynomialEvalError>
 {
-  let (&k, constants) = constants.split_last().ok_or(PolynomialEvalError::CardinalityTooLow)?;
-  if constants.len() >= 1 {
-    Ok(x * eval_polynomial(x, constants)? + k)
-  } else {
-    Ok(k)
+  let (&k, constants) = constants.split_first().ok_or(PolynomialEvalError::CardinalityTooLow)?;
+  Ok(eval_polynomial_inner(x, constants, k))
+}
+
+fn eval_polynomial_inner<T: MulAddAssign + Copy> (x: T, constants: &[T], n: T) -> T
+{
+  let mut result = n;
+  let mut it = constants.iter();
+  while let Some(&k) = it.next() {
+    result.mul_add_assign(x, k);
   }
+  result
 }
