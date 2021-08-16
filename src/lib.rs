@@ -3,7 +3,7 @@ use thiserror::Error;
 
 #[derive(Error, Debug, PartialEq)]
 pub enum PolynomialEvalError {
-  #[error("Cardinality of constants slice is too low.")]
+  #[error("Cardinality of coefficients slice is too low.")]
   CardinalityTooLow,
 }
 
@@ -13,8 +13,8 @@ pub enum PolynomialEvalError {
 ///
 /// That's what this function does too.
 ///
-/// You provide a value for `𝑥` and a slice of values for the constants `&[𝑎, 𝑏, 𝑐, 𝑑, …]`.
-/// The cardinality of the slice of constants must equal the degree of the polynomial plus one.
+/// You provide a value for `𝑥` and a slice of values for the coefficients `&[𝑎, 𝑏, 𝑐, 𝑑, …]`.
+/// The cardinality of the slice of coefficients must equal the degree of the polynomial plus one.
 ///
 /// Here are some examples demonstrating use of eval_polynomial:
 ///
@@ -47,12 +47,12 @@ pub enum PolynomialEvalError {
 ///
 /// assert_eq!(val, trad);
 /// ```
-pub fn try_eval_polynomial<T: MulAddAssign + Copy> (x: T, constants: &[T]) -> Result<T, PolynomialEvalError>
+pub fn try_eval_polynomial<T: MulAddAssign + Copy> (x: T, coefficients: &[T]) -> Result<T, PolynomialEvalError>
 {
-  let (&k, constants) = constants.split_first().ok_or(PolynomialEvalError::CardinalityTooLow)?;
+  let (&k, coefficients) = coefficients.split_first().ok_or(PolynomialEvalError::CardinalityTooLow)?;
 
   let mut val = k;
-  let mut it = constants.iter();
+  let mut it = coefficients.iter();
   while let Some(&k) = it.next() {
     val.mul_add_assign(x, k);
   }
