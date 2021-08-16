@@ -80,6 +80,8 @@ pub fn eval_any_rank_polynomial<T: Zero + MulAddAssign + Copy> (x: T, coefficien
 ///
 /// assert_eq!(0, eval_known_rank_polynomial(-4, &[1, 4]));
 /// ```
+///
+/// See also: [eval_any_rank_polynomial]
 pub fn eval_known_rank_polynomial<T: Zero + MulAddAssign + Copy, const N: usize> (x: T, coefficients: &[T; N]) -> T
 {
   eval_any_rank_polynomial(x, coefficients)
