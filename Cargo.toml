@@ -7,7 +7,7 @@ repository = "https://github.com/ctsrc/horner"
 version = "0.2.0"
 authors = ["Erik Nordstrøm <erik@nordstroem.no>"]
 edition = "2018"
-keywords = ["math", "polynomial", "algebra", "polynomials"]
+keywords = ["math", "polynomial", "algebra", "polynomials", "maths"]
 categories = ["mathematics", "science"]
 
 [dependencies]
