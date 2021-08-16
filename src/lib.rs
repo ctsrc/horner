@@ -57,8 +57,7 @@ pub fn eval_any_rank_polynomial<T: Zero + MulAddAssign + Copy> (x: T, coefficien
 {
   if let Some((&k, coefficients)) = coefficients.split_first() {
     let mut val = k;
-    let mut it = coefficients.iter();
-    while let Some(&k) = it.next() {
+    for &k in coefficients {
       val.mul_add_assign(x, k);
     }
     val
