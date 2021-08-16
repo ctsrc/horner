@@ -8,7 +8,10 @@ use num_traits::Zero;
 /// That's what this function does too.
 ///
 /// You provide a value for `𝑥` and a slice of values for the coefficients `&[𝑎, 𝑏, 𝑐, 𝑑, …]`.
-/// The cardinality of the slice of coefficients must equal the degree of the polynomial plus one.
+/// The cardinality of the slice of coefficients must equal the degree of the polynomial plus one,
+/// except for the special case of the whole expression being just 0 in which case a slice of
+/// length zero means the same (gives you the same result) as if the slice was equal to `&[0]`
+/// or any other number of all zeros.
 ///
 /// Here are some examples demonstrating use of eval_polynomial:
 ///
