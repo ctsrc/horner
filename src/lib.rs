@@ -50,15 +50,12 @@ pub enum PolynomialEvalError {
 pub fn eval_polynomial<T: MulAddAssign + Copy> (x: T, constants: &[T]) -> Result<T, PolynomialEvalError>
 {
   let (&k, constants) = constants.split_first().ok_or(PolynomialEvalError::CardinalityTooLow)?;
-  Ok(eval_polynomial_inner(x, constants, k))
-}
 
-fn eval_polynomial_inner<T: MulAddAssign + Copy> (x: T, constants: &[T], n: T) -> T
-{
-  let mut result = n;
+  let mut val = k;
   let mut it = constants.iter();
   while let Some(&k) = it.next() {
-    result.mul_add_assign(x, k);
+    val.mul_add_assign(x, k);
   }
-  result
+
+  Ok(val)
 }
